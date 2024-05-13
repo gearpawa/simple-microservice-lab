@@ -1,5 +1,5 @@
 # Use official node image from docker
-FROM node:10
+FROM node:lts-alpine3.19
 
 # Create application directory
 RUN mkdir -p /usr/src/app

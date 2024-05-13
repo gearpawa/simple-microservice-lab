@@ -1,0 +1,43 @@
+version: '2'
+services:
+  quotes:
+    build:
+      context: ./QuoteService
+      dockerfile: app.dockerfile
+    networks:
+      - simple-network
+  api:
+    build:
+      context: ./ApiGateway
+      dockerfile: app.dockerfile
+    environment:
+      - "QUOTES_API=http://quotes:5000"
+    depends_on:
+      - quotes
+    ports:
+      - "3000:3000"
+    networks:
+      - simple-network
+  frontend:
+    build:
+      context: ./FrontendApplication
+      dockerfile: app.dockerfile
+    deploy:
+      replicas: 2
+    networks:
+      - simple-network
+  reverse:
+    build:
+      context: ./ReverseProxy
+      dockerfile: app.dockerfile
+    volumes:
+      - ./ReverseProxy/nginx:/etc/nginx
+    depends_on:
+      - frontend
+    ports:
+      - "80:80"
+    networks:
+      - simple-network
+networks:
+  simple-network:
+    
