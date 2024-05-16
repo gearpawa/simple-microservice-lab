@@ -23,15 +23,15 @@ services:
       context: ./FrontendApplication
       dockerfile: app.dockerfile
     deploy:
-      replicas: 2
+      replicas: 1
     networks:
       - simple-network
   reverse:
     build:
       context: ./ReverseProxy
       dockerfile: app.dockerfile
-    volumes:
-      - ./ReverseProxy/nginx:/etc/nginx
+    # volumes:
+    #   - ./ReverseProxy/nginx:/etc/nginx
     depends_on:
       - frontend
     ports:

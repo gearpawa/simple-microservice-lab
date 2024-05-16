@@ -1,7 +1,7 @@
 FROM nginx:stable-alpine3.19
 
 # # Copy your Nginx configuration
-# COPY /nginx/frontend.conf /etc/nginx/sites-available/frontend.conf
+COPY ./nginx /etc/nginx
 
 EXPOSE 80
 

@@ -22,8 +22,8 @@ services:
       - simple-network
   reverse:
     image: reverse:latest
-    volumes:
-      - ./ReverseProxy/nginx:/etc/nginx
+    # volumes:
+    #   - ./ReverseProxy/nginx:/etc/nginx
     depends_on:
       - frontend
     ports:
