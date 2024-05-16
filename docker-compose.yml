@@ -18,6 +18,18 @@ services:
     build:
       context: ./FrontendApplication
       dockerfile: app.dockerfile
+    # ports:
+    #   - "8080:80"
+    deploy:
+      replicas: 5
+  reverse:
+    build:
+      context: ./ReverseProxy
+      dockerfile: app.dockerfile
+    volumes:
+      - ./ReverseProxy/nginx:/etc/nginx
     ports:
-      - "8080:80"
+      - "80:80"
+    depends_on:
+      - frontend
     
