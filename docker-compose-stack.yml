@@ -33,5 +33,4 @@ services:
 networks:
   simple-network:
     driver: overlay
-    attachable: true
     
