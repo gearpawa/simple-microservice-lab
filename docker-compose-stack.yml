@@ -30,6 +30,8 @@ services:
       - "80:80"
     networks:
       - simple-network
+    deploy:
+      mode: global
 networks:
   simple-network:
     driver: overlay
